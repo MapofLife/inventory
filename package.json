@@ -1,9 +1,9 @@
 {
-  "name": "inventory-module",
+  "name": "inventory",
   "private": true,
   "version": "0.0.1",
   "description": "Map of Life Dataset Inventory",
-  "repository": "https://github.com/MapofLife/inventory-module",
+  "repository": "https://github.com/MapofLife/inventory",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.3.1",
