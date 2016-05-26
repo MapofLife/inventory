@@ -1,0 +1,9 @@
+#static sub-modules -- each SPA home needs to be defined here along with it's static asset directory
+handlers:
+- url: /inventory/static
+  static_dir: modules/inventory/dist/static
+
+- url: /species.*
+  static_files: modules/inventory/dist/index.html
+  upload: modules/inventory/dist/index.html
+  expiration: "15m"
