@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "homepage": "https://github.com/MapofLife/ng-mol",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "angular-google-maps": "~2.3.2",
     "angular": "~1.5.5",
     "angular-ui-select3": "ui-select#*",
