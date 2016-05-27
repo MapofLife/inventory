@@ -1,14 +1,13 @@
-
 handlers:
 - url: /inventory/static
-  static_dir: modules/inventory/dist/static
+  static_dir: modules/inventory/src/static
 
 - url: /inventory/.*
-  static_files: modules/inventory/dist/index.html
-  upload: modules/inventory/dist/index.html
+  static_files: modules/inventory/src/index.html
+  upload: modules/inventory/src/index.html
   expiration: "15m"
 
-- url: /inventory/
-  static_files: modules/inventory/dist/index.html
-  upload: modules/inventory/dist/index.html
+- url: /inventory
+  static_files: modules/inventory/src/index.html
+  upload: modules/inventory/src/index.html
   expiration: "15m"
