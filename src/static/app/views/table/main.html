@@ -4,12 +4,13 @@
   </div>
   <div class="table-scroll-container">
     <table class="table table-responsive">
-      <thead><tr>
-        <th ng-repeat="field in facets.fields" ng-bind-html="field.title"></th>
-
-      </tr></thead>
+      <thead>
+        <tr>
+          <th ng-repeat="field in facets.fields" ng-bind-html="field.title"></th>
+        </tr>
+      </thead>
       <tbody>
-        <tr ng-repeat="row in facets.rows">
+        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets.fields">
           <td ng-repeat="cell in row">
             <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
           </td>

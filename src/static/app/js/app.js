@@ -59,7 +59,7 @@ angular.module('mol.inventory', [
         url: '/table'
       }
     );
-      $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 }]).factory('MOLApi', ['$http', function($http) {
 		return function(service, params, method, canceller, loading) {
 			loading = (typeof loading === undefined) ? false : loading;

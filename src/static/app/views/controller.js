@@ -6,7 +6,6 @@ module.controller('inventoryCtrl',
 
   $scope.choices = {};
 
-
   $scope.map = {
     center: { lat: 0, lng: 0, zoom: 3 },
     events: { map: { enable: ['click'], logic: 'emit' } },
@@ -43,7 +42,7 @@ module.controller('inventoryCtrl',
                   if(!params[facet]) {
                     params[facet] = []
                   }
-                  params[facet].push(option)
+                  params[facet].push(option);
               }
           }
           );
