@@ -83,10 +83,6 @@
   flex: 3 1 auto;
 }
 
-.mol-inventory-container small {
-
-}
-
 @media (max-width: 768px) {
   .mol-inventory-container {
     -webkit-flex-flow: column;

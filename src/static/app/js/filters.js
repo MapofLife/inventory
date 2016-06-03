@@ -10,21 +10,23 @@ angular.module('mol.inventory')
     };
   })
   .filter('choiceFilter', function() {
-    return function(rows, choices, fields) {
-      if (!rows) { return true; }
+    return function(rows, choices, facets, skip_column) {
+      if (!facets) { return rows; }
+
+      // Convert choices object into an array of arrays to make filtering easier
+      var choice = facets.fields.map(function(field) {
+        var object = choices[field.value] || {};
+        return field.value == skip_column ? []
+          : Object.keys(object).filter(function(key) { return object[key]; });
+      });
+      if (!choice.reduce(function(prev, curr) { return prev + curr.length; }, 0)) { return rows; }
+
+      // Filter the rows based upon the choices
       return rows.filter(function(row) {
         return row.every(function(column, c) {
-          var object = choices[fields[c].value];
-          if (!object) { return true; }
-          var choice = [];
-          for (var property in object) {
-            if (object.hasOwnProperty(property) && object[property]) {
-              choice.push(property);
-            }
-          }
-          if (!choice.length) { return true; }
+          if (!choice[c].length) { return true; }
           return column.some(function(datum) {
-            return choice.some(function(value) { return value === datum.value });
+            return choice[c].some(function(value) { return value === datum.value });
           });
         });
       });

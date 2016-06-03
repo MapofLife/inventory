@@ -23,7 +23,10 @@
     "angular-filter": "~0.5.8",
     "ui-select": "angular-ui-select#^0.16.1",
     "angular-touch": "~1.5.5",
-    "angular-animate": "~1.5.5"
+    "angular-animate": "~1.5.1",
+    "angular-odometer": "~0.0.10",
+    "odometer": "~0.4.7",
+    "angular-count-to": "*"
   },
   "authors": [
     "Raphael LaFrance <raphael.lafrance@gmail.com>"

@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets.fields">
+        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets">
           <td ng-repeat="cell in row">
             <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
           </td>

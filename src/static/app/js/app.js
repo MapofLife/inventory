@@ -29,7 +29,7 @@ angular.module('mol.inventory', [
     'http*://*mol.org/**',
     'http*://api.mol.org/0.x/inventory/**',
   ]);
-  //$urlRouterProvider.otherwise("inventory/");
+  //$urlRouterProvider.otherwise("/");
   $stateProvider
     .state(
       'inventory',
