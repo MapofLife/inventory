@@ -7,7 +7,7 @@ handlers:
   upload: modules/inventory/src/index.html
   expiration: "15m"
 
-- url: /inventory
+- url: /inventory/
   static_files: modules/inventory/src/index.html
   upload: modules/inventory/src/index.html
   expiration: "15m"

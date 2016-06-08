@@ -21,15 +21,16 @@ angular.module('mol.inventory', [
   }])
 .config(['$httpProvider', '$locationProvider', '$sceDelegateProvider', '$urlRouterProvider', '$stateProvider',
             function($httpProvider, $locationProvider, $sceDelegateProvider, $urlRouterProvider, $stateProvider) {
-  $httpProvider.defaults.withCredentials = true;
+  $httpProvider.defaults.withCredentials = false;
   $locationProvider.html5Mode(true);
   $sceDelegateProvider.resourceUrlWhitelist([
     'self',
     'http*://localhost**',
     'http*://*mol.org/**',
     'http*://api.mol.org/0.x/inventory/**',
+    'http*://mapoflife.github.io/**',
   ]);
-  //$urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/");
   $stateProvider
     .state(
       'inventory',
