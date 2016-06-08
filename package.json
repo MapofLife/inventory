@@ -4,6 +4,8 @@
   "version": "0.0.1",
   "description": "Map of Life Dataset Inventory",
   "repository": "git@github.com:MapofLife/inventory.git",
+  "url": "mapoflife.github.io/inventory/",
+  "base": "inventory",
   "license": "MIT",
   "directory": "static/components/",
   "devDependencies": {
