@@ -36,21 +36,21 @@ module.controller('inventoryCtrl',
       return params ? facet + '=' + params : '';
     }).filter(function(param) { return param; }).join('&');
 
-    if (params) {
+    if (!params) {
+      $scope.map.layers.overlays = {};
+    } else {
       var url = 'http://api.mol.org/0.x/inventory/maps?' + params + '&callback=JSON_CALLBACK';
       $http.jsonp(url).then(function(response) {
        $scope.map.layers.overlays = {
          xyz: {
            name: 'Datasets',
            visible: true,
-           url:  response.data.tile_url,
+           url: response.data.tile_url,
            type: 'xyz',
            doRefresh: true
          }
        };
       });
-    } else {
-      $scope.map.layers.overlays = {};
     }
   };
   $scope.initialize();
