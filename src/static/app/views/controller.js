@@ -23,36 +23,21 @@ module.controller('inventoryCtrl',
   $scope.initialize = function() {
     $scope.$watch('choices', function() {
       $scope.inventoryQuery();
-    },true);
-
+    }, true);
     MOLApi('inventory/datasets').then(function(response) {
       $scope.facets = response.data;
     });
   };
 
   $scope.inventoryQuery = function() {
-    var params = {};
-    angular.forEach(
-      $scope.choices,
-      function(options, facet) {
-        angular.forEach(
-          options,
-          function(value, option) {
-              if(value) {
-                  if(!params[facet]) {
-                    params[facet] = []
-                  }
-                  params[facet].push(option);
-              }
-          }
-          );
-      });
-    if (Object.keys(params).length) {
-      var url = 'http://api.mol.org/0.x/inventory/maps?';
-      Object.keys(params).forEach(function(key) {
-        url += key + '=' + params[key].join(',') + '&';
-      });
-      url += 'callback=JSON_CALLBACK';
+    var params = Object.keys($scope.choices).map(function (facet) {
+      var choices = $scope.choices[facet];
+      var params = Object.keys(choices || {}).filter(function(choice) { return choices[choice] }).join(',');
+      return params ? facet + '=' + params : '';
+    }).filter(function(param) { return param; }).join('&');
+
+    if (params) {
+      var url = 'http://api.mol.org/0.x/inventory/maps?' + params + '&callback=JSON_CALLBACK';
       $http.jsonp(url).then(function(response) {
        $scope.map.layers.overlays = {
          xyz: {
