@@ -4,11 +4,9 @@
     <span ng-repeat="field in facets.fields track by $index">
       <span ng-repeat="(value, group) in facets.rows | map: getColumn($index)
           | flatten:shallow | orderBy:'title' | groupBy:'value'">
-        <span ng-if="choices[field.value][value]">
-          <span class="badge">
-            {{group[0].title}}
-            <i class="pull-right fa fa-times unselect" ng-click="choices[field.value][value] = undefined"></i>
-          </span>
+        <span class="badge" ng-if="choices[field.value][value]">
+          {{group[0].title}}
+          <i class="pull-right fa fa-times unselect" ng-click="choices[field.value][value] = undefined"></i>
         </span>
       </span>
     </span>
