@@ -1,8 +1,22 @@
 <div class="mol-facets">
+  <div>
+    <h4>Selected Options</h4>
+    <span ng-repeat="field in facets.fields track by $index">
+      <span ng-repeat="(value, group) in facets.rows | map: getColumn($index)
+          | flatten:shallow | orderBy:'title' | groupBy:'value'">
+        <span ng-if="choices[field.value][value]">
+          <span class="badge">
+            {{group[0].title}}
+            <i class="pull-right fa fa-times unselect" ng-click="choices[field.value][value] = undefined"></i>
+          </span>
+        </span>
+      </span>
+    </span>
+  </div>
   <div ng-repeat="field in facets.fields track by $index" is-open="status.open">
     <div class="views-inventory-facet-group-title">
       <i ng-click="c = !c" class="pull-right clickable fa" ng-class="{'fa-caret-down': !c, 'fa-caret-up': c}"></i>
-      <i class="pull-right clickable fa fa-times" ng-show="choices[field.value]" ng-click="choices[field.value] = undefined"></i>
+      <i class="pull-right clickable fa fa-times unselect-all" ng-show="choices[field.value]" ng-click="choices[field.value] = undefined"></i>
       <h4 class="left">
         {{field.title}}
       </h4>

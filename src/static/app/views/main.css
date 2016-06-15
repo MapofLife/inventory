@@ -12,7 +12,6 @@ body {
   -webkit-flex: 1;
   flex-direction: column;
   -webkit-flex-direction: column;
-
 }
 .sidebar-container {
     display: -webkit-flex;
@@ -30,7 +29,20 @@ body {
     border-right: 2pt solid gray;
 }
 
-.sidebar .fa-times {
+.sidebar .badge {
+  background-color: white;
+  color: black;
+  border: 1px solid gray;
+  font-weight: bolder;
+  white-space: normal;
+}
+
+.sidebar .fa-times.unselect {
+  color: gray;
+  font-weight: bolder;
+}
+
+.sidebar .fa-times.unselect-all {
   margin-right: 8px;
 }
 
