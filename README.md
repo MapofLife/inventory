@@ -36,7 +36,7 @@ Build and deploy to gh-pages using
 
 ```
 grunt build
-git commit -m 'Updating dist'
+git commit -am 'Updating dist'
 grunt deploy
 ```
 
