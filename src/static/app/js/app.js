@@ -28,6 +28,7 @@ angular.module('mol.inventory', [
     'http*://localhost**',
     'http*://*mol.org/**',
     'http*://api.mol.org/0.x/inventory/**',
+    'http*://api.mol.org/1.0/inventory/**',
     'http*://mapoflife.github.io/**',
   ]);
   $urlRouterProvider.otherwise("/");
@@ -66,8 +67,7 @@ angular.module('mol.inventory', [
 			loading = (typeof loading === undefined) ? false : loading;
 			return $http({
 				method: method || 'GET',
-        url: 'https://api.mol.org/0.x/{0}'.format(service),
-				//url: 'http://dev.api-0-x.map-of-life.appspot.com//0.x/{0}'.format(service),
+        url: 'https://api.mol.org/1.0/{0}'.format(service),
 				params: params,
 				withCredentials: false,
 				cache: true,

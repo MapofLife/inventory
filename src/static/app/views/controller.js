@@ -39,7 +39,7 @@ module.controller('inventoryCtrl',
     if (!params) {
       $scope.map.layers.overlays = {};
     } else {
-      var url = 'http://api.mol.org/0.x/inventory/maps?' + params + '&callback=JSON_CALLBACK';
+      var url = 'http://api.mol.org/1.0/inventory/maps?' + params + '&callback=JSON_CALLBACK';
       $http.jsonp(url).then(function(response) {
        $scope.map.layers.overlays = {
          xyz: {
