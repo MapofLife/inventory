@@ -13,6 +13,7 @@ body {
   flex-direction: column;
   -webkit-flex-direction: column;
 }
+
 .sidebar-container {
     display: -webkit-flex;
     display: flex;
@@ -44,6 +45,14 @@ body {
 
 .sidebar .fa-times.unselect-all {
   margin-right: 8px;
+}
+
+.sidebar .clear-all {
+  padding-top: 8px;
+}
+
+.mol-facets > div {
+  margin-bottom: 20px;
 }
 
 .content-container {

@@ -1,20 +1,25 @@
 <div class="mol-facets">
-  <div>
-    <h4>Selected Options</h4>
+  <div class="selected-options">
+    <div>
+      <i class="pull-right clickable fa fa-times clear-all" ng-show="anyChoice()" ng-click="choices = {}"></i>
+      <h3 class="left">Selected Options</h3>
+    </div>
     <span ng-repeat="field in facets.fields track by $index">
       <span ng-repeat="(value, group) in facets.rows | map: getColumn($index)
           | flatten:shallow | orderBy:'title' | groupBy:'value'">
-        <span class="badge" ng-if="choices[field.value][value]">
+        <span class="badge" ng-show="choices[field.value][value]">
           {{group[0].title}}
-          <i class="pull-right fa fa-times unselect" ng-click="choices[field.value][value] = undefined"></i>
+          <i class="pull-right fa fa-times unselect" ng-click="choices[field.value][value] = false"></i>
         </span>
       </span>
     </span>
   </div>
   <div ng-repeat="field in facets.fields track by $index" is-open="status.open">
-    <div class="views-inventory-facet-group-title">
-      <i ng-click="c = !c" class="pull-right clickable fa" ng-class="{'fa-caret-down': !c, 'fa-caret-up': c}"></i>
-      <i class="pull-right clickable fa fa-times unselect-all" ng-show="choices[field.value]" ng-click="choices[field.value] = undefined"></i>
+    <div>
+      <i ng-click="c = !c" class="pull-right clickable fa" ng-class="{'fa-caret-down': !c, 'fa-caret-left': c}"></i>
+      <i class="pull-right clickable fa fa-times unselect-all"
+        ng-show="anyFacetChoice(choices[field.value])" ng-click="choices[field.value] = undefined">
+      </i>
       <h4 class="left">
         {{field.title}}
       </h4>
@@ -22,7 +27,7 @@
     <div class="col-xs-offset-1" uib-collapse="c"
         ng-repeat="(value, group) in facets.rows | choiceFilter:choices:facets:field.value
                 | map: getColumn($index) | flatten:shallow | orderBy:'title' | groupBy:'value'">
-      <label class="clickable ng-binding">
+      <label class="clickable ng-binding" ng-show="!choices[field.value][value]">
         <input type="checkbox" ng-model="choices[field.value][value]"
             class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" />
         {{group[0].title}}&nbsp;

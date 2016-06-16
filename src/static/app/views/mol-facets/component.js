@@ -12,7 +12,18 @@ angular.module('mol.facets', [])
           return function(row) {
             return row[col];
           }
-        }
+        };
+        $scope.anyFacetChoice = function(facetChoices) {
+          facetChoices = facetChoices || {};
+          return Object.keys(facetChoices).reduce(function(prev, curr) {
+            return prev + +facetChoices[curr];
+          }, 0);
+        };
+        $scope.anyChoice = function() {
+          return Object.keys($scope.choices).reduce(function(prev, curr) {
+            return prev + $scope.anyFacetChoice($scope.choices[curr]);
+          }, 0);
+        };
       }]
     };
   }]);

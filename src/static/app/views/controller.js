@@ -53,5 +53,6 @@ module.controller('inventoryCtrl',
       });
     }
   };
+
   $scope.initialize();
 }]);
