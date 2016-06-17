@@ -54,5 +54,12 @@ module.controller('inventoryCtrl',
     }
   };
 
+  $scope.getValue = function(row, columnName) {
+    var index = $scope.facets.fields.reduce(function(prev, curr, i) {
+      return curr.value == columnName ? i : prev;
+    }, -1);
+    return row[index][0].value;
+  };
+
   $scope.initialize();
 }]);

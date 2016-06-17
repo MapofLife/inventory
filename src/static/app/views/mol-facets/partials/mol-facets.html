@@ -2,9 +2,9 @@
   <div class="selected-options">
     <div>
       <i class="pull-right clickable fa fa-times clear-all" ng-show="anyChoice()" ng-click="choices = {}"></i>
-      <h3 class="left">Selected Options</h3>
+      <h4 class="left">Selected Options</h4>
     </div>
-    <span ng-repeat="field in facets.fields track by $index">
+    <span ng-repeat="field in facets.fields | filter: {facet: true} track by $index">
       <span ng-repeat="(value, group) in facets.rows | map: getColumn($index)
           | flatten:shallow | orderBy:'title' | groupBy:'value'">
         <span class="badge" ng-show="choices[field.value][value]">
@@ -14,7 +14,8 @@
       </span>
     </span>
   </div>
-  <div ng-repeat="field in facets.fields track by $index" is-open="status.open">
+  <div ng-repeat="field in facets.fields | filter: {facet: true} track by $index" is-open="status.open">
+    <hr />
     <div>
       <i ng-click="c = !c" class="pull-right clickable fa" ng-class="{'fa-caret-down': !c, 'fa-caret-left': c}"></i>
       <i class="pull-right clickable fa fa-times unselect-all"

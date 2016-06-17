@@ -36,6 +36,7 @@ body {
   border: 1px solid gray;
   font-weight: bolder;
   white-space: normal;
+  padding: 4px 8px;
 }
 
 .sidebar .fa-times.unselect {
@@ -60,6 +61,26 @@ body {
     display: flex;
     -webkit-flex: 1;
     flex: 1;
+}
+
+.soon {
+  position: relative;
+}
+
+.soon i {
+  color: lightgray;
+}
+
+.show {
+  position: absolute;
+  left: -20px;
+  text-align: center;
+  background-color: white;
+  z-index: 10;
+}
+
+.table th {
+  font-weight: bold;
 }
 
 footer {
