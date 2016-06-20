@@ -58,7 +58,7 @@ module.controller('inventoryCtrl',
     var index = $scope.facets.fields.reduce(function(prev, curr, i) {
       return curr.value == columnName ? i : prev;
     }, -1);
-    return row[index][0].value;
+    return row[index].map(function(item) { return item.value; }).join(' ');
   };
 
   $scope.initialize();

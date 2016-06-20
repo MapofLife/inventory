@@ -13,6 +13,7 @@ angular.module('mol.facets', [])
       },
       controller: ['$scope', function($scope) {
         $scope.badges = [];
+        $scope.facetBadges = {};
         $scope.getColumn = function(col) {
           return function(row) {
             return row[col];
@@ -22,26 +23,13 @@ angular.module('mol.facets', [])
           if (!$scope.facets) { return; }
           $scope.values2labels = {};
           $scope.facets.fields.forEach(function(field, f) {
-            if (field.facet) {
-              $scope.values2labels[field.value] = {};
-              $scope.facets.rows.forEach(function(row) {
-                row[f].forEach(function(item) {
-                  $scope.values2labels[field.value][item.value] = item.title;
-                });
+            $scope.values2labels[field.value] = {};
+            $scope.facets.rows.forEach(function(row) {
+              row[f].forEach(function(item) {
+                $scope.values2labels[field.value][item.value] = item.title;
               });
-            }
+            });
           });
-        };
-        $scope.anyFacetChoice = function(facetChoices) {
-          facetChoices = facetChoices || {};
-          return Object.keys(facetChoices).reduce(function(prev, curr) {
-            return prev + +facetChoices[curr];
-          }, 0);
-        };
-        $scope.anyChoice = function() {
-          return Object.keys($scope.choices).reduce(function(prev, curr) {
-            return prev + $scope.anyFacetChoice($scope.choices[curr]);
-          }, 0);
         };
         $scope.badges4facet = function(facetValue) {
           return Object.keys($scope.choices[facetValue]).filter(function(choice) {
@@ -56,9 +44,13 @@ angular.module('mol.facets', [])
             }, []);
         };
         $scope.updateBadges = function() {
-          if (!$scope.values2labels) { $scope.badges = []; }
-          $scope.badges = Object.keys($scope.choices).reduce(function(prev, curr) {
-            return prev.concat($scope.badges4facet(curr));
+          $scope.facetBadges = {};
+          Object.keys($scope.choices).forEach(function(facet) {
+            $scope.facetBadges[facet] = $scope.badges4facet(facet);
+            return $scope.facetBadges[facet];
+          });
+          $scope.badges = Object.keys($scope.facetBadges).reduce(function(prev, curr) {
+            return prev.concat($scope.facetBadges[curr]);
           }, []);
         };
       }]

@@ -31,7 +31,7 @@ angular.module('mol.inventory', [
     'http*://api.mol.org/1.0/inventory/**',
     'http*://mapoflife.github.io/**',
   ]);
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/table");
   $stateProvider
     .state(
       'inventory',

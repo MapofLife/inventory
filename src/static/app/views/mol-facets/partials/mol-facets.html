@@ -1,7 +1,7 @@
 <div class="mol-facets">
   <div class="selected-options">
     <div>
-      <i class="pull-right clickable fa fa-times clear-all" ng-show="anyChoice()" ng-click="choices = {}"></i>
+      <i class="pull-right clickable fa fa-times clear-all" ng-show="badges.length" ng-click="choices = {}"></i>
       <h4 class="left">Selected Options</h4>
     </div>
     <span ng-repeat="badge in badges">
@@ -10,14 +10,14 @@
         <i class="pull-right fa fa-times unselect" ng-click="choices[badge.facet][badge.value] = false"></i>
       </span>
     </span>
-    <span class="nothing-selected" ng-show="!anyChoice()">Select items to filter below</span>
+    <span class="nothing-selected" ng-show="!badges.length">Select items to filter below</span>
   </div>
   <div ng-repeat="field in facets.fields | filter: {facet: true} track by $index" is-open="status.open">
     <hr />
     <div>
       <i ng-click="c = !c" class="pull-right clickable fa" ng-class="{'fa-caret-down': !c, 'fa-caret-left': c}"></i>
       <i class="pull-right clickable fa fa-times unselect-all"
-        ng-show="anyFacetChoice(choices[field.value])" ng-click="choices[field.value] = {}">
+        ng-show="facetBadges[field.value].length" ng-click="choices[field.value] = {}">
       </i>
       <h4 class="left">
         {{field.title}}
@@ -31,6 +31,7 @@
             class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched hidden" />
         {{group[0].title}}&nbsp;
         <span ng-bind-html="'(' + group.length + ')'" class="ng-binding"></span>
+        <span ng-bind="{{options.length}}"></span>
       </label>
     </div>
   </div>
