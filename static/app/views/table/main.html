@@ -3,7 +3,7 @@
     <mol-facets class="sidebar" facets="facets" choices="choices"/>
   </div>
   <div class="table-scroll-container">
-    <table class="table table-responsive">
+    <table class="table table-responsive table-hover table-condensed">
       <thead>
         <tr>
           <th ng-repeat="field in facets.fields" ng-bind-html="field.title"></th>
@@ -15,10 +15,15 @@
             <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
           </td>
           <td>
-            <i class="clickable fa fa-info"></i>
+            <a ng-href="//mol.org/datasets/{{getValue(row, 'dataset_id')}}">
+              <i class="clickable fa fa-info"></i>
+            </a>
           <td>
           <td>
-            <i class="clickable fa fa-download"></i>
+            <span class="soon">
+              <i class="clickable fa fa-download" ng-click="show = !show"></i>
+              <span class="show" ng-show="show">Coming soon!</span>
+            </span>
           <td>
         </tr>
       </tbody>
