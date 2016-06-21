@@ -30,7 +30,7 @@ body {
     border-right: 2pt solid gray;
 }
 
-.sidebar .badge {
+.sidebar a.badge {
   background-color: white;
   color: black;
   border: 1px solid gray;
@@ -40,17 +40,40 @@ body {
   margin: 0 2px 4px 0;
 }
 
-.sidebar .fa-times.unselect {
+.sidebar a.badge:hover {
+  background-color: lightgray;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.sidebar a.badge i.unselect {
   color: gray;
-  font-weight: bolder;
 }
 
 .sidebar .fa-times.unselect-all {
   margin-right: 8px;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+.sidebar .fa-times.unselect-all:hover {
+  background-color: lightgray;
 }
 
 .sidebar .clear-all {
-  padding-top: 8px;
+  margin-top: 12px;
+}
+
+.sidebar .clear-all a {
+  color: gray;
+  padding: 4px 8px;
+}
+
+.sidebar .clear-all:hover a {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: black;
 }
 
 .sidebar .nothing-selected {
