@@ -53,6 +53,13 @@ angular.module('mol.facets', [])
             return prev.concat($scope.facetBadges[curr]);
           }, []);
         };
+        $scope.clear = function() {
+          Object.keys($scope.choices).forEach(function(facet) {
+            Object.keys($scope.choices[facet]).forEach(function(key) {
+              $scope.choices[facet][key] = false;
+            });
+          });
+        };
       }]
     };
   }]);
