@@ -31,14 +31,14 @@ angular.module('mol.facets', [])
             });
           });
         };
-        $scope.badges4facet = function(facetValue) {
-          return Object.keys($scope.choices[facetValue]).filter(function(choice) {
-              return $scope.choices[facetValue][choice];
+        $scope.badges4facet = function(facet) {
+          return Object.keys($scope.choices[facet]).filter(function(choice) {
+              return $scope.choices[facet][choice];
           }).reduce(function(prev, curr) {
               prev.push({
-                facet: facetValue,
+                facet: facet,
                 value: curr,
-                title: $scope.values2labels[facetValue][curr]
+                title: $scope.values2labels[facet][curr]
               });
               return prev;
             }, []);

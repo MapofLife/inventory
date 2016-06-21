@@ -9,6 +9,14 @@ angular.module('mol.inventory')
       return $sce.trustAsHtml(str);
     };
   })
+  .filter('excludeSelected', function() {
+    return function(values, facet, choices) {
+      return values.filter(function(value) {
+        if (!choices[facet.value]) { return true; }
+        return !choices[facet.value][value];
+      });
+    };
+  })
   .filter('choiceFilter', function() {
     return function(rows, choices, facets, skip_column) {
       if (!facets) { return rows; }

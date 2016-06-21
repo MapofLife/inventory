@@ -17,6 +17,7 @@
     overflow-x: hidden;
     border-right: 2pt solid gray;
   }
+  
 .views-inventory-map .sidebar {
     flex: 1;
     -webkit-flex: 1;

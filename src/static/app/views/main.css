@@ -37,6 +37,7 @@ body {
   font-weight: bolder;
   white-space: normal;
   padding: 4px 8px;
+  margin: 0 2px 4px 0;
 }
 
 .sidebar .fa-times.unselect {
