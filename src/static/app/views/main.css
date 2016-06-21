@@ -33,6 +33,7 @@ body {
 .sidebar .dataset-count {
   font-size: x-small;
   float: right;
+  margin-top: 4px;
   margin-right: 4px;
 }
 
