@@ -30,6 +30,12 @@ body {
     border-right: 2pt solid gray;
 }
 
+.sidebar .dataset-count {
+  font-size: x-small;
+  float: right;
+  margin-right: 4px;
+}
+
 .sidebar a.badge {
   background-color: white;
   color: black;

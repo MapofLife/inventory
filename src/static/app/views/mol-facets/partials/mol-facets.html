@@ -1,7 +1,10 @@
 <div class="mol-facets">
   <div class="selected-options">
     <div>
-      <h4 class="left">Selected Options</h4>
+      <h4 class="left">
+        Selected
+        <span class="dataset-count">Selected Datasets: {{(facets.rows | choiceFilter:choices:facets).length | number: 0}}</span>
+      </h4>
     </div>
     <span ng-repeat="badge in badges">
       <a class="badge" href="#" ng-show="choices[badge.facet][badge.value]" ng-click="choices[badge.facet][badge.value] = false">
