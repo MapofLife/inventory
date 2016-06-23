@@ -6,11 +6,16 @@
     <table class="table table-responsive table-hover table-condensed">
       <thead>
         <tr>
-          <th ng-repeat="field in facets.fields" ng-bind-html="field.title"></th>
+          <th ng-repeat="field in facets.fields track by $index" ng-click="toggleSort($index)">
+            <span ng-bind-html="field.title"></span>
+            <i class="fa fa-sort" aria-hidden="true" ng-show="sortColumn != $index"></i>
+            <i class="fa fa-sort-asc" aria-hidden="true" ng-show="sortColumn == $index && !reverse"></i>
+            <i class="fa fa-sort-desc" aria-hidden="true" ng-show="sortColumn == $index && reverse"></i>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets">
+        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets | orderBy:columnValue:reverse">
           <td ng-repeat="cell in row">
             <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
           </td>
