@@ -61,5 +61,21 @@ module.controller('inventoryCtrl',
     return row[index].map(function(item) { return item.value; }).join(' ');
   };
 
+  $scope.sortColumn = 0;
+  $scope.reverse = false;
+
+  $scope.toggleSort = function(i) {
+    if (i == $scope.sortColumn) {
+      $scope.reverse = ! $scope.reverse;
+    } else {
+      $scope.sortColumn = i;
+      $scope.reverse = false;
+    }
+  };
+
+  $scope.columnValue = function(row) {
+    return row[$scope.sortColumn].map(function(v) { return v.title; }).join(' ');
+  };
+
   $scope.initialize();
 }]);
