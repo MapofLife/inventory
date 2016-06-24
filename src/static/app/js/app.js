@@ -10,8 +10,10 @@ angular.module('mol.inventory', [
   'ngAnimate',
   'ui.bootstrap',
   'mol.facets',
+  'mol.api',
+  'mol.services',
   'mol.loading-indicator',
-  'mol.inventory-controllers'
+  'mol.inventory-controllers',
 ])
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
@@ -27,8 +29,8 @@ angular.module('mol.inventory', [
     'self',
     'http*://localhost**',
     'http*://*mol.org/**',
-    'http*://api.mol.org/0.x/inventory/**',
     'http*://api.mol.org/1.0/inventory/**',
+    'http*://api.mol.org/1.0/datasets/**',
     'http*://mapoflife.github.io/**',
   ]);
   $urlRouterProvider.otherwise("/table");
@@ -59,6 +61,19 @@ angular.module('mol.inventory', [
           "" : { templateUrl: "static/app/views/table/main.html"}
         },
         url: '/table'
+      }
+    )
+    .state(
+      'inventory.info',
+      {
+        title: 'Dataset Info',
+        views: {
+          "": {
+            templateUrl: "static/app/views/info/info.html",
+            controller: 'molInventoryInfoCtrl'
+          }
+        },
+        url: '/info/{dataset}'
       }
     );
     $locationProvider.html5Mode(true);
