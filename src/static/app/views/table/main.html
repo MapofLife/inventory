@@ -1,21 +1,20 @@
 <div class="views-inventory-table">
   <div class="sidebar-scroll-container">
-    <mol-facets class="sidebar" facets="facets" choices="choices"/>
+    <mol-facets class="sidebar" facets="model.facets" choices="model.choices"/>
   </div>
   <div class="table-scroll-container">
     <table class="table table-responsive table-hover table-condensed">
       <thead>
         <tr>
-          <th ng-repeat="field in facets.fields track by $index" ng-click="toggleSort($index)">
+          <th ng-repeat="field in model.facets.fields track by $index" ng-click="toggleSort($index)">
             <span ng-bind-html="field.title"></span>
             <i class="fa fa-sort" aria-hidden="true" ng-show="sortColumn != $index"></i>
-            <i class="fa fa-sort-asc" aria-hidden="true" ng-show="sortColumn == $index && !reverse"></i>
-            <i class="fa fa-sort-desc" aria-hidden="true" ng-show="sortColumn == $index && reverse"></i>
+            <i class="fa" ng-class="{'fa-sort-asc': !reverse, 'fa-sort-desc':reverse}" aria-hidden="true" ng-show="sortColumn == $index"></i>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in facets.rows | choiceFilter:choices:facets | orderBy:columnValue:reverse">
+        <tr ng-repeat="row in model.facets.rows | choiceFilter:model.choices:model.facets | orderBy:columnValue:reverse">
           <td ng-repeat="cell in row">
             <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
           </td>
@@ -25,9 +24,10 @@
             </a>
           <td>
           <td>
-            <span class="soon">
-              <i class="clickable fa fa-download" ng-click="show = !show" ng-mouseleave="show = false"></i>
-              <span class="show" ng-show="show">Coming soon!</span>
+            <span>
+              <i class="clickable fa fa-download"
+                  uib-tooltip="Coming soon!"
+                  tooltip-placement="left"></i>
             </span>
           <td>
         </tr>
