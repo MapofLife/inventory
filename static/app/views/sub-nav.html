@@ -15,11 +15,12 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse visible-xs" collapse="!isCollapsed">
                     <ul class="nav navbar-nav">
-                        <li ui-sref="inventory.map" ui-sref-options="{notify:false}" ui-sref-active="active">
-                            <a href="#">Map</a>
+                        <li
+                          ui-sref-options="{inherit:true}" ui-sref-active="active">
+                            <a ui-sref="datasets.map($state.params)">Map</a>
                         </li>
-                        <li ui-sref="inventory.table" ui-sref-options="{notify:false}" ui-sref-active="active">
-                            <a href="#">Table</a>
+                        <li  ui-sref-active="active">
+                            <a ui-sref="datasets.table($state.params)" ui-sref-options="{inherit:true}" >Table</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav visible-xxxs visible-xxs">
