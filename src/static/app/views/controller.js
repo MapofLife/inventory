@@ -1,23 +1,26 @@
-var module = angular.module('mol.inventory-controllers', []);
+angular.module('mol.controllers')
+  .controller('molDatasetsCtrl', ['$scope', 'molApi','$stateParams','$rootScope','$state',
+    function($scope, molApi,$stateParams, $rootScope,$state) {
 
-module.controller('inventoryCtrl',
-    ['$scope', 'leafletData', '$timeout', '$window', '$http', '$filter', 'MOLApi',
-    function($scope, leafletData, $timeout, $window, $http, $filter, MOLApi) {
-
+  $rootScope.$state = $state;
   $scope.model = {
-      choices: undefined,
-      facets: undefined
+      choices: {},
+      facets: {fields:[],rows:[]}
   };
 
   $scope.initialize = function() {
-    MOLApi('inventory/datasets').then(function(response) {
+    molApi({"service":"inventory/datasets", "loading":true}).then(function(response) {
       $scope.model.facets = response.data;
     });
   };
 
+  if($state.params.dataset) {
+    $scope.model.choices.dataset_id = {}
+    $scope.model.choices.dataset_id[$state.params.dataset]=true;
+  }
 
   $scope.getValue = function(row, columnName) {
-    var index = $scope.facets.fields.reduce(function(prev, curr, i) {
+    var index = $scope.model.facets.fields.reduce(function(prev, curr, i) {
       return curr.value == columnName ? i : prev;
     }, -1);
     return row[index].map(function(item) { return item.value; }).join(' ');

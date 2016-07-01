@@ -1,5 +1,5 @@
 
-.views-inventory-table {
+.views-datasets-table {
     -webkit-flex: 1 1 auto;
     flex: 1 1 auto;
     display: -webkit-flex;
@@ -9,7 +9,7 @@
     text-indent: hanging;
 }
 
-.views-inventory-table  .sidebar-scroll-container {
+.views-datasets-table  .sidebar-scroll-container {
     position: relative;
     max-width: 320px;
     min-width: 320px;
@@ -17,7 +17,7 @@
     overflow-x: hidden;
     border-right: 2pt solid gray;
   }
-  .views-inventory-table  .table-scroll-container {
+  .views-datasets-table  .table-scroll-container {
       position: relative;
       flex: 1;
       display: flex;
@@ -25,7 +25,7 @@
       overflow-x: auto;
       border-right: 2pt solid gray;
     }
-.views-inventory-table .sidebar {
+.views-datasets-table .sidebar {
     flex: 1;
     -webkit-flex: 1;
     position: absolute;
@@ -38,7 +38,7 @@
     width: 310px;
   }
 
-.views-inventory-table .inventory-table {
+.views-datasets-table .datasets-table {
       display: -webkit-flex;
       display: flex;
       -webkit-flex: 1;
@@ -46,7 +46,7 @@
 }
 
 
-.mol-inventory-container a {
+.mol-datasets-container a {
   color: black;
 }
 
@@ -58,7 +58,7 @@
   margin-left: 6px;
 }
 
-.mol-inventory-table {
+.mol-datasets-table {
   margin: 4px;
   margin-right: 2px;
   padding: 4px;
@@ -89,7 +89,7 @@
 }
 
 @media (max-width: 768px) {
-  .mol-inventory-container {
+  .mol-datasets-container {
     -webkit-flex-flow: column;
     flex-flow: column;
   }

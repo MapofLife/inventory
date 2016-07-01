@@ -1,5 +1,5 @@
-angular.module('mol.inventory-controllers')
-  .controller('molInventoryInfoCtrl', ['$scope', '$rootScope', '$state', 'molApi',
+angular.module('mol.controllers')
+  .controller('molDatasetsInfoCtrl', ['$scope', '$rootScope', '$state', 'molApi',
     function($scope, $rootScope, $state, molApi) {
       $rootScope.pagetitle = $state.current.title;
       $scope.loading = true;
@@ -9,7 +9,6 @@ angular.module('mol.inventory-controllers')
       };
       molApi({
         "service": "datasets/info",
-        "version": "1.0",
         "params": dsparams,
         "loading": true
       }).then(function(result) {

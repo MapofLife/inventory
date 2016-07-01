@@ -1,4 +1,4 @@
-angular.module('mol.inventory')
+angular.module('mol.datasets')
   .filter('trustUrl', function($sce) {
     return function(url) {
       return $sce.trustAsResourceUrl(url);

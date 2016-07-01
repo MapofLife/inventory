@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mol.inventory">
+<html lang="en" ng-app="mol.datasets">
   <head>
     <base class="dev" href="http://localhost:9001/inventory/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Map of Life - Dataset Inventory</title>
+    <title>Map of Life - Datasets</title>
     <link rel=“icon” href=“//mol.org/static/img/favicon.ico” type=“image/x-icon” />
     <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
     <link class="dev" rel="stylesheet" href="static/components/nvd3/build/nv.d3.css"/>
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="//mol.org/static/css/mol-footer.css"/>
 
     <!--App layouts -->
+    <link class="dev" rel="stylesheet" href="static/app/css/layouts.css"/>
     <link class="dev" rel="stylesheet" href="static/app/views/main.css"/>
     <link class="dev" rel="stylesheet" href="static/app/views/map/main.css"/>
     <link class="dev" rel="stylesheet" href="static/app/views/table/main.css"/>
@@ -53,13 +54,15 @@
     <script class="dev" src="static/components/mol-ui-components/api/component.min.js"></script>
 
     <!-- App components -->
+    <script class="dev" src="static/app/js/app.js"></script>
     <script class="dev" src="static/app/views/mol-facets/component.js"></script>
     <script class="dev" src="static/app/views/controller.js"></script>
-    <script class="dev" src="static/app/js/services.js"></script>
-    <script class="dev" src="static/app/js/app.js"></script>
-    <script class="dev" src="static/app/js/filters.js"></script>
-    <script class="dev" src="static/app/js/component.js"></script>
+    <script class="dev" src="static/app/views/map/controller.js"></script>
     <script class="dev" src="static/app/views/info/controller.js"></script>
+    <script class="dev" src="static/app/js/services.js"></script>
+    <script class="dev" src="static/app/js/component.js"></script>
+
+    <script class="dev" src="static/app/js/filters.js"></script>
 
   </head>
   <body ui-view state="{{ $state.current.name }}"></body>

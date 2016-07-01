@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('mol.inventory', [
+angular.module('mol.controllers',[]);
+
+angular.module('mol.datasets', [
   'ui.router',
   'ui-leaflet',
   'angular-loading-bar',
@@ -13,7 +15,7 @@ angular.module('mol.inventory', [
   'mol.api',
   'mol.services',
   'mol.loading-indicator',
-  'mol.inventory-controllers',
+  'mol.controllers'
 ])
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
@@ -30,66 +32,60 @@ angular.module('mol.inventory', [
     'http:*//localhost**',
     'http*://127.0.0.1:9001/**',
     'http*://*mol.org/**',
-    'http*://api.mol.org/1.0/inventory/**',
+    'http*://api.mol.org/1.0/datasets/**',
     'http*://api.mol.org/1.0/datasets/**',
     'http*://mapoflife.github.io/**',
   ]);
-  $urlRouterProvider.otherwise("/table");
+  $urlRouterProvider.otherwise("/table/");
   $stateProvider
     .state(
-      'inventory',
+      'datasets',
       {
-         abstract: true,
-         templateUrl: 'static/app/views/main.html',
-         controller: 'inventoryCtrl',
+         abstract:true,
+         views: {
+           "": {
+              templateUrl: 'static/app/layouts/base.html',
+              controller: 'molDatasetsCtrl'
+            },
+           "@datasets" : { templateUrl: 'static/app/layouts/sidebar.html'},
+           "sidebar@datasets" : {templateUrl: 'static/app/views/sidebar.html'}
+         }
       }
     )
     .state(
-      'inventory.map',
+      'datasets.map',
       {
-        title: "Dataset Inventory Map",
+        title: "Dataset datasets Map",
         views: {
-          "" : { templateUrl: "static/app/views/map/main.html"}
+          "content@datasets" : {
+            templateUrl: "static/app/views/map/main.html",
+            controller: 'molDatasetsMapCtrl'}
         },
-        url: '/map'
+        url: '/map/:dataset'
       }
     )
     .state(
-      'inventory.table',
+      'datasets.table',
       {
-        title: "Dataset Inventory Table",
+        title: "Dataset datasets Table",
         views: {
-          "" : { templateUrl: "static/app/views/table/main.html"}
+          "content@datasets" : { templateUrl: "static/app/views/table/main.html"}
         },
-        url: '/table'
+        url: '/table/:dataset'
       }
     )
     .state(
-      'inventory.info',
+      'datasets.info',
       {
         title: 'Dataset Info',
         views: {
-          "": {
+          "content@datasets": {
             templateUrl: "static/app/views/info/info.html",
-            controller: 'molInventoryInfoCtrl'
+            controller: 'molDatasetsInfoCtrl'
           }
         },
-        url: '/info/{dataset}'
+        url: '/info/:dataset'
       }
     );
     $locationProvider.html5Mode(true);
-}]).factory('MOLApi', ['$http', function($http) {
-		return function(service, params, method, canceller, loading) {
-			loading = (typeof loading === undefined) ? false : loading;
-			return $http({
-				method: method || 'GET',
-        url: 'https://api.mol.org/1.0/{0}'.format(service),
-				params: params,
-				withCredentials: false,
-				cache: true,
-				timeout: canceller ? canceller.promise : undefined,
-				ignoreLoadingBar: loading
-			});
-		};
-	}
-]);
+}])

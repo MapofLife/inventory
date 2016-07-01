@@ -1,38 +1,30 @@
-<div class="views-inventory-table">
-  <div class="sidebar-scroll-container">
-    <mol-facets class="sidebar" facets="model.facets" choices="model.choices"/>
-  </div>
-  <div class="table-scroll-container">
-    <table class="table table-responsive table-hover table-condensed">
-      <thead>
-        <tr>
-          <th ng-repeat="field in model.facets.fields track by $index" ng-click="toggleSort($index)">
-            <span ng-bind-html="field.title"></span>
-            <i class="fa fa-sort" aria-hidden="true" ng-show="sortColumn != $index"></i>
-            <i class="fa" ng-class="{'fa-sort-asc': !reverse, 'fa-sort-desc':reverse}" aria-hidden="true" ng-show="sortColumn == $index"></i>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in model.facets.rows | choiceFilter:model.choices:model.facets | orderBy:columnValue:reverse">
-          <td ng-repeat="cell in row">
-            <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
-          </td>
-          <td>
-            <a ng-href="//mol.org/datasets/info/{{getValue(row, 'dataset_id')}}">
-              <i class="clickable fa fa-info"></i>
-            </a>
-          <td>
-          <td>
-            <span>
-              <i class="clickable fa fa-download"
-                  uib-tooltip="Coming soon!"
-                  tooltip-placement="left"></i>
-            </span>
-          <td>
-        </tr>
-      </tbody>
-    <table>
-  </div>
-  <mol-loading-indicator style="position:absolute; top:128px; left:48%"></mol-loading-indicator>
-</div>
+<table class="table table-responsive table-hover table-condensed">
+  <thead>
+    <tr>
+      <th ng-repeat="field in model.facets.fields track by $index" ng-click="toggleSort($index)">
+        <span ng-bind-html="field.title"></span>
+        <i class="fa fa-sort" aria-hidden="true" ng-show="sortColumn != $index"></i>
+        <i class="fa" ng-class="{'fa-sort-asc': !reverse, 'fa-sort-desc':reverse}" aria-hidden="true" ng-show="sortColumn == $index"></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ui-sref="datasets.info({dataset: getValue(row, 'dataset_id')})" class="clickable" ng-repeat="row in model.facets.rows | choiceFilter:model.choices:model.facets | orderBy:columnValue:reverse">
+      <td ng-repeat="cell in row">
+        <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
+      </td>
+      <td>
+        <a ui-sref="datasets.info({dataset: getValue(row, 'dataset_id')})">
+          <i class="clickable fa fa-info"></i>
+        </a>
+      <td>
+      <td>
+        <span>
+          <i class="clickable fa fa-download"
+              uib-tooltip="Coming soon!"
+              tooltip-placement="left"></i>
+        </span>
+      <td>
+    </tr>
+  </tbody>
+<table>
