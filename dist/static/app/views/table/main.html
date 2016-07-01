@@ -9,7 +9,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ui-sref="datasets.info({dataset: getValue(row, 'dataset_id')})" class="clickable" ng-repeat="row in model.facets.rows | choiceFilter:model.choices:model.facets | orderBy:columnValue:reverse">
+    <tr ui-sref="datasets.info({dataset: getValue(row, 'dataset_id')})" ui-sref-options="{reload:true}"
+      class="clickable" ng-repeat="row in model.facets.rows | choiceFilter:model.choices:model.facets | orderBy:columnValue:reverse">
       <td ng-repeat="cell in row">
         <div ng-repeat="content in cell" ng-bind-html="content.title"></div>
       </td>
@@ -17,14 +18,7 @@
         <a ui-sref="datasets.info({dataset: getValue(row, 'dataset_id')})">
           <i class="clickable fa fa-info"></i>
         </a>
-      <td>
-      <td>
-        <span>
-          <i class="clickable fa fa-download"
-              uib-tooltip="Coming soon!"
-              tooltip-placement="left"></i>
-        </span>
-      <td>
+      </td>
     </tr>
   </tbody>
 <table>
