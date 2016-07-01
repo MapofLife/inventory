@@ -6,6 +6,10 @@
    flex:1;
 }
 
+.layouts-basic {
+    padding-bottom:20px;
+}
+
 .layouts-sidebar {
         display: -webkit-flex;
         display: flex;

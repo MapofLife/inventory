@@ -1,6 +1,6 @@
 angular.module('mol.controllers').controller('molDatasetsMapCtrl',
-    ['$scope', 'leafletData', '$timeout', '$window', '$http', '$filter', 'molApi','$q',
-    function($scope, leafletData, $timeout, $window, $http, $filter, molApi,$q) {
+    ['$scope', 'leafletData', '$timeout', '$window', '$http', '$filter', 'molApi','$q','$state',
+    function($scope, leafletData, $timeout, $window, $http, $filter, molApi,$q,$state) {
 
 
   $scope.$watch('model.choices', function() {
@@ -10,6 +10,11 @@ angular.module('mol.controllers').controller('molDatasetsMapCtrl',
   $scope.map = {
     center: { lat: 0, lng: 0, zoom: 3 },
     events: { map: { enable: ['click'], logic: 'emit' } },
+    controls: {
+      fullscreen: {
+            position: 'topright'
+        }
+    },
     layers: {
       baselayers: {
         xyz: {
@@ -28,8 +33,14 @@ angular.module('mol.controllers').controller('molDatasetsMapCtrl',
       var choices = $scope.model.choices[facet];
       payload[facet] = Object.keys(choices).filter(function(choice) {return choices[choice]} ).join(',').toLowerCase() || '';
     })
-$scope.canceller.resolve();
-  $scope.canceller = $q.defer();
+
+  if($state.params.dataset) {
+    payload={dataset_id:$state.params.dataset}
+  }
+
+
+  $scope.canceller.resolve();
+    $scope.canceller = $q.defer();
       $http({
         "url": "https://mol.cartodb.com/api/v1/map/named/datasets-map",
         "method": "POST",

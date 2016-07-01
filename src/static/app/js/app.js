@@ -46,22 +46,29 @@ angular.module('mol.datasets', [
            "": {
               templateUrl: 'static/app/layouts/base.html',
               controller: 'molDatasetsCtrl'
-            },
-           "@datasets" : { templateUrl: 'static/app/layouts/sidebar.html'},
-           "sidebar@datasets" : {templateUrl: 'static/app/views/sidebar.html'}
+            }
          }
       }
     )
     .state(
-      'datasets.map',
+      'datasets.all',
       {
         title: "Dataset datasets Map",
         views: {
-          "content@datasets" : {
+
+          "@datasets" : { templateUrl: 'static/app/layouts/sidebar.html'},
+          "sidebar@datasets.all" : {
+            templateUrl: 'static/app/views/sidebar.html'},
+          "content@datasets.all" : {
+            templateUrl: "static/app/layouts/content.html"},
+          "map@datasets.all" : {
             templateUrl: "static/app/views/map/main.html",
-            controller: 'molDatasetsMapCtrl'}
+            controller: 'molDatasetsMapCtrl'},
+          "info-pane@datasets.all" : {
+            templateUrl: "static/app/views/table/main.html"},
+
         },
-        url: '/map/:dataset'
+        url: '/'
       }
     )
     .state(
@@ -79,12 +86,17 @@ angular.module('mol.datasets', [
       {
         title: 'Dataset Info',
         views: {
-          "content@datasets": {
+          "@datasets" : { templateUrl: 'static/app/layouts/basic.html'},
+          "content@datasets.info" : {
+            templateUrl: "static/app/layouts/content.html"},
+          "map@datasets.info" : {
+            templateUrl: "static/app/views/map/main.html",
+            controller: 'molDatasetsMapCtrl'},
+          "info-pane@datasets.info" : {
             templateUrl: "static/app/views/info/info.html",
-            controller: 'molDatasetsInfoCtrl'
-          }
+            controller: 'molDatasetsInfoCtrl'}
         },
-        url: '/info/:dataset'
+        url: '/:dataset'
       }
     );
     $locationProvider.html5Mode(true);
