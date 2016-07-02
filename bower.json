@@ -43,6 +43,7 @@
     "angular-simple-logger": "~0.1.4"
   },
   "dependencies": {
-    "angular-animate": "^1.5.7"
+    "angular-animate": "^1.5.7",
+    "Leaflet.fullscreen": "Leaflet/Leaflet.fullscreen#^1.0.1"
   }
 }
